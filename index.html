@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Risorse Didattiche - Laboratorio di Informatica</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  .container { max-width: 900px; margin: 0 auto; }
+  .page-title { text-align: center; margin-bottom: 8px; }
+  .page-title h1 {
+    font-size: 28px; font-weight: 800;
+    background: linear-gradient(135deg, #60a5fa, #a78bfa);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .page-subtitle {
+    text-align: center; color: #94a3b8; font-size: 14px; margin-bottom: 40px;
+  }
+  .year-section { margin-bottom: 40px; }
+  .year-header {
+    font-size: 20px; font-weight: 700; color: #60a5fa;
+    border-bottom: 2px solid #1e293b; padding-bottom: 8px; margin-bottom: 20px;
+  }
+  .class-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .class-card {
+    background: #1e293b; border: 1px solid #334155; border-radius: 12px;
+    padding: 20px; transition: all 0.3s ease;
+  }
+  .class-card:hover { border-color: #60a5fa; transform: translateY(-2px); }
+  .class-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .class-card .materia { color: #94a3b8; font-size: 13px; margin-bottom: 12px; }
+  .class-card ul { list-style: none; padding: 0; }
+  .class-card li { margin-bottom: 6px; }
+  .class-card a {
+    color: #a78bfa; text-decoration: none; font-size: 14px; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .class-card a:hover { color: #c4b5fd; }
+  .class-card .empty { color: #475569; font-size: 13px; font-style: italic; }
+  .footer {
+    text-align: center; color: #475569; font-size: 12px;
+    margin-top: 60px; padding-top: 20px; border-top: 1px solid #1e293b;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="page-title"><h1>Risorse Didattiche</h1></div>
+  <p class="page-subtitle">Laboratorio di Informatica &mdash; Prof. Gaetano Pappacena</p>
+
+  <div class="year-section">
+    <h2 class="year-header">Anno Scolastico 2025/26</h2>
+    <div class="class-grid">
+
+      <div class="class-card">
+        <h3>4G</h3>
+        <div class="materia">Sistemi e Reti</div>
+        <ul>
+          <li><a href="2025-26/4G-sistemi-reti/SR06.2_diagrammi-rete.html">SR06.2 - Diagrammi di Rete (MediCare Plus)</a></li>
+        </ul>
+      </div>
+
+      <div class="class-card">
+        <h3>1P</h3>
+        <div class="materia">Informatica</div>
+        <p class="empty">Nessuna risorsa pubblicata</p>
+      </div>
+
+      <div class="class-card">
+        <h3>3G</h3>
+        <div class="materia">Sistemi e Reti</div>
+        <p class="empty">Nessuna risorsa pubblicata</p>
+      </div>
+
+      <div class="class-card">
+        <h3>4G</h3>
+        <div class="materia">TPS</div>
+        <p class="empty">Nessuna risorsa pubblicata</p>
+      </div>
+
+      <div class="class-card">
+        <h3>5G</h3>
+        <div class="materia">GOI</div>
+        <p class="empty">Nessuna risorsa pubblicata</p>
+      </div>
+
+      <div class="class-card">
+        <h3>5G</h3>
+        <div class="materia">Informatica</div>
+        <p class="empty">Nessuna risorsa pubblicata</p>
+      </div>
+
+      <div class="class-card">
+        <h3>5G</h3>
+        <div class="materia">Sistemi e Reti</div>
+        <p class="empty">Nessuna risorsa pubblicata</p>
+      </div>
+
+      <div class="class-card">
+        <h3>5G</h3>
+        <div class="materia">TPS</div>
+        <p class="empty">Nessuna risorsa pubblicata</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    &copy; 2025 &mdash; Risorse didattiche pubblicate su GitHub Pages
+  </div>
+</div>
+</body>
+</html>
