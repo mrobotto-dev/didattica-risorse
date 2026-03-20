@@ -1,6 +1,6 @@
 # Risorse Didattiche
 
-Materiali didattici per il laboratorio di informatica, pubblicati su GitHub Pages.
+Materiali didattici interattivi per il laboratorio di informatica, pubblicati su GitHub Pages.
 
 **Sito web:** https://mrobotto-dev.github.io/didattica-risorse/
 
@@ -8,37 +8,31 @@ Materiali didattici per il laboratorio di informatica, pubblicati su GitHub Page
 
 ```
 didattica-risorse/
-├── index.html                        ← homepage con indice generale
-├── ANNO-SCOLASTICO/
-│   ├── CLASSE-materia/
-│   │   ├── file-risorsa.html
-│   │   └── ...
-│   └── ...
-└── ...
+├── index.html              ← homepage dinamica (legge risorse.json)
+├── risorse.json            ← registro risorse pubblicate
+└── ANNO/
+    └── CLASSE-materia/
+        └── modulo-slug/
+            └── file-risorsa.html
 ```
 
 ### Convenzioni di nomenclatura
 
-| Elemento         | Formato                  | Esempio              |
-|------------------|--------------------------|----------------------|
-| Anno scolastico  | `YYYY-YY`               | `2025-26`            |
-| Cartella classe  | `CLASSE-materia`         | `4G-sistemi-reti`    |
+| Elemento         | Formato              | Esempio                    |
+|------------------|----------------------|----------------------------|
+| Anno scolastico  | `YYYY-YY`           | `2025-26`                  |
+| Cartella classe  | `CLASSE-materia`     | `4G-sistemi-reti`          |
+| Cartella modulo  | `slug-lowercase`     | `progetto-rete`            |
+| File risorsa     | `PREFIX##.N_slug.html` | `SR06.2_diagrammi-rete.html` |
 
-### Classi disponibili (2025-26)
+### URL pattern
 
-| Cartella              | Classe | Materia                                       |
-|-----------------------|--------|-----------------------------------------------|
-| `1P-informatica`      | 1P     | Informatica                                   |
-| `3G-sistemi-reti`     | 3G     | Sistemi e Reti                                |
-| `4G-sistemi-reti`     | 4G     | Sistemi e Reti                                |
-| `4G-tps`              | 4G     | Tecnologie e Progettazione di Sistemi         |
-| `5G-goi`              | 5G     | Gestione Progetto e Organizzazione d'Impresa  |
-| `5G-informatica`      | 5G     | Informatica                                   |
-| `5G-sistemi-reti`     | 5G     | Sistemi e Reti                                |
-| `5G-tps`              | 5G     | Tecnologie e Progettazione di Sistemi         |
+```
+https://mrobotto-dev.github.io/didattica-risorse/{anno}/{classe-slug}/{modulo-slug}/{filename}
+```
 
 ## Come aggiungere nuove risorse
 
-1. Copiare il file nella cartella appropriata: `ANNO/CLASSE-materia/`
-2. Aggiornare la sezione della classe in `index.html`
-3. Commit e push su `main` — GitHub Pages si aggiorna automaticamente
+1. Copiare il file HTML nel path corretto: `ANNO/CLASSE-materia/modulo-slug/`
+2. Aggiungere un'entry in `risorse.json`
+3. Commit e push su `main` — GitHub Pages si aggiorna automaticamente (~1 min)

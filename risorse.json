@@ -1,0 +1,18 @@
+{
+  "ultimo_aggiornamento": "2026-03-20",
+  "base_url": "https://mrobotto-dev.github.io/didattica-risorse",
+  "risorse": [
+    {
+      "anno": "2025-26",
+      "classe": "4G-sistemi-reti",
+      "classe_display": "4G Sistemi e Reti",
+      "modulo": "progetto-rete",
+      "modulo_display": "Progetto Rete",
+      "file": "SR06.2_diagrammi-rete.html",
+      "titolo": "MediCare Plus - Diagrammi di Rete",
+      "descrizione": "Confronto interattivo rete unificata vs segmentata (SR05 vs SR06)",
+      "esercitazione": "SR06",
+      "data_pubblicazione": "2026-03-20"
+    }
+  ]
+}

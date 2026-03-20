@@ -28,9 +28,12 @@
   .year-header {
     font-size: 20px; font-weight: 700; color: #60a5fa;
     border-bottom: 2px solid #1e293b; padding-bottom: 8px; margin-bottom: 20px;
+    cursor: pointer; user-select: none;
   }
+  .year-header:hover { color: #93c5fd; }
+  .year-header .toggle { font-size: 14px; margin-right: 8px; }
   .class-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 16px;
   }
   .class-card {
@@ -39,18 +42,39 @@
   }
   .class-card:hover { border-color: #60a5fa; transform: translateY(-2px); }
   .class-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
-  .class-card .materia { color: #94a3b8; font-size: 13px; margin-bottom: 12px; }
-  .class-card ul { list-style: none; padding: 0; }
-  .class-card li { margin-bottom: 6px; }
-  .class-card a {
-    color: #a78bfa; text-decoration: none; font-size: 14px; font-weight: 500;
-    transition: color 0.2s;
+  .class-card .materia { color: #94a3b8; font-size: 13px; margin-bottom: 14px; }
+  .modulo-section { margin-bottom: 12px; }
+  .modulo-label {
+    font-size: 12px; font-weight: 600; color: #60a5fa;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin-bottom: 6px;
   }
-  .class-card a:hover { color: #c4b5fd; }
-  .class-card .empty { color: #475569; font-size: 13px; font-style: italic; }
+  .resource-list { list-style: none; padding: 0; }
+  .resource-list li { margin-bottom: 8px; }
+  .resource-link {
+    display: block; padding: 8px 12px; border-radius: 8px;
+    background: #0f172a; border: 1px solid #1e293b;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .resource-link:hover { border-color: #a78bfa; background: #1a1f35; }
+  .resource-link .res-title {
+    color: #a78bfa; font-size: 14px; font-weight: 600; display: block;
+  }
+  .resource-link .res-desc {
+    color: #64748b; font-size: 12px; margin-top: 2px; display: block;
+  }
+  .resource-link .res-date {
+    color: #475569; font-size: 11px; margin-top: 2px; display: block;
+  }
+  .loading { text-align: center; color: #94a3b8; padding: 40px; }
+  .error { text-align: center; color: #f87171; padding: 40px; }
   .footer {
     text-align: center; color: #475569; font-size: 12px;
     margin-top: 60px; padding-top: 20px; border-top: 1px solid #1e293b;
+  }
+  @media (max-width: 600px) {
+    .class-grid { grid-template-columns: 1fr; }
+    body { padding: 20px 12px; }
   }
 </style>
 </head>
@@ -58,67 +82,77 @@
 <div class="container">
   <div class="page-title"><h1>Risorse Didattiche</h1></div>
   <p class="page-subtitle">Laboratorio di Informatica &mdash; Prof. Gaetano Pappacena</p>
-
-  <div class="year-section">
-    <h2 class="year-header">Anno Scolastico 2025/26</h2>
-    <div class="class-grid">
-
-      <div class="class-card">
-        <h3>4G</h3>
-        <div class="materia">Sistemi e Reti</div>
-        <ul>
-          <li><a href="2025-26/4G-sistemi-reti/SR06.2_diagrammi-rete.html">SR06.2 - Diagrammi di Rete (MediCare Plus)</a></li>
-        </ul>
-      </div>
-
-      <div class="class-card">
-        <h3>1P</h3>
-        <div class="materia">Informatica</div>
-        <p class="empty">Nessuna risorsa pubblicata</p>
-      </div>
-
-      <div class="class-card">
-        <h3>3G</h3>
-        <div class="materia">Sistemi e Reti</div>
-        <p class="empty">Nessuna risorsa pubblicata</p>
-      </div>
-
-      <div class="class-card">
-        <h3>4G</h3>
-        <div class="materia">TPS</div>
-        <p class="empty">Nessuna risorsa pubblicata</p>
-      </div>
-
-      <div class="class-card">
-        <h3>5G</h3>
-        <div class="materia">GOI</div>
-        <p class="empty">Nessuna risorsa pubblicata</p>
-      </div>
-
-      <div class="class-card">
-        <h3>5G</h3>
-        <div class="materia">Informatica</div>
-        <p class="empty">Nessuna risorsa pubblicata</p>
-      </div>
-
-      <div class="class-card">
-        <h3>5G</h3>
-        <div class="materia">Sistemi e Reti</div>
-        <p class="empty">Nessuna risorsa pubblicata</p>
-      </div>
-
-      <div class="class-card">
-        <h3>5G</h3>
-        <div class="materia">TPS</div>
-        <p class="empty">Nessuna risorsa pubblicata</p>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="footer">
-    &copy; 2025 &mdash; Risorse didattiche pubblicate su GitHub Pages
-  </div>
+  <div id="content"><p class="loading">Caricamento risorse...</p></div>
+  <div class="footer">&copy; 2025 &mdash; Risorse didattiche pubblicate su GitHub Pages</div>
 </div>
+<script>
+(async function() {
+  const container = document.getElementById('content');
+  try {
+    const res = await fetch('risorse.json');
+    if (!res.ok) throw new Error('Impossibile caricare risorse.json');
+    const data = await res.json();
+    const risorse = data.risorse;
+    if (!risorse || risorse.length === 0) {
+      container.innerHTML = '<p class="loading">Nessuna risorsa pubblicata.</p>';
+      return;
+    }
+    // Raggruppa: anno > classe > modulo > risorse
+    const anni = {};
+    risorse.forEach(r => {
+      if (!anni[r.anno]) anni[r.anno] = {};
+      const key = r.classe;
+      if (!anni[r.anno][key]) anni[r.anno][key] = { display: r.classe_display, moduli: {} };
+      if (!anni[r.anno][key].moduli[r.modulo]) {
+        anni[r.anno][key].moduli[r.modulo] = { display: r.modulo_display, items: [] };
+      }
+      anni[r.anno][key].moduli[r.modulo].items.push(r);
+    });
+    let html = '';
+    // Ordina anni decrescente
+    const anniOrdinati = Object.keys(anni).sort().reverse();
+    anniOrdinati.forEach(anno => {
+      const annoDisplay = anno.replace('-', '/');
+      html += '<div class="year-section">';
+      html += '<h2 class="year-header">Anno Scolastico ' + annoDisplay + '</h2>';
+      html += '<div class="class-grid">';
+      const classi = Object.keys(anni[anno]).sort();
+      classi.forEach(classe => {
+        const c = anni[anno][classe];
+        // Estrai sigla classe e materia
+        const parts = c.display.split(' ');
+        const sigla = parts[0];
+        const materia = parts.slice(1).join(' ');
+        html += '<div class="class-card">';
+        html += '<h3>' + sigla + '</h3>';
+        html += '<div class="materia">' + materia + '</div>';
+        const moduli = Object.keys(c.moduli);
+        moduli.forEach(modulo => {
+          const m = c.moduli[modulo];
+          html += '<div class="modulo-section">';
+          html += '<div class="modulo-label">' + m.display + '</div>';
+          html += '<ul class="resource-list">';
+          m.items.forEach(item => {
+            const url = anno + '/' + classe + '/' + modulo + '/' + item.file;
+            html += '<li><a class="resource-link" href="' + url + '">';
+            html += '<span class="res-title">' + item.titolo + '</span>';
+            if (item.descrizione) {
+              html += '<span class="res-desc">' + item.descrizione + '</span>';
+            }
+            html += '<span class="res-date">' + item.esercitazione + ' &middot; ' + item.data_pubblicazione + '</span>';
+            html += '</a></li>';
+          });
+          html += '</ul></div>';
+        });
+        html += '</div>';
+      });
+      html += '</div></div>';
+    });
+    container.innerHTML = html;
+  } catch (e) {
+    container.innerHTML = '<p class="error">Errore nel caricamento delle risorse.<br><small>' + e.message + '</small></p>';
+  }
+})();
+</script>
 </body>
 </html>
