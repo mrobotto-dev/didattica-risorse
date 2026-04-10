@@ -82,112 +82,119 @@
 <div class="diagram-panel active" id="panel-before">
 <div class="status-banner danger">⚠️ RETE UNICA — Tutti sulla stessa rete 192.168.20.0/24 — I pazienti possono raggiungere il server!</div>
 
-<svg viewBox="0 0 900 580" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 960 490" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <filter id="sh"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.35"/></filter>
-    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 1L8 5L0 9z" fill="#ef4444"/></marker>
+    <filter id="sh"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.4"/></filter>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 2L9 5L0 8z" fill="#ef4444"/>
+    </marker>
   </defs>
 
-  <!-- Zone BG -->
-  <rect x="16" y="44" width="480" height="400" rx="14" fill="#1e3a5f" fill-opacity="0.25" stroke="#334155"/>
-  <rect x="516" y="44" width="368" height="400" rx="14" fill="#5f3a1e" fill-opacity="0.25" stroke="#334155"/>
+  <!-- Background panel -->
+  <rect x="10" y="10" width="940" height="470" rx="16" fill="#1e293b" fill-opacity="0.4" stroke="#334155"/>
 
   <!-- Network badge -->
-  <rect x="310" y="6" width="280" height="28" rx="8" fill="#7c3aed" fill-opacity="0.2" stroke="#7c3aed" stroke-opacity="0.4"/>
-  <text x="450" y="26" text-anchor="middle" font-size="12" font-weight="600" fill="#c4b5fd">Rete Unica: 192.168.20.0/24</text>
+  <rect x="630" y="16" width="312" height="24" rx="7" fill="#7c3aed" fill-opacity="0.25" stroke="#7c3aed" stroke-opacity="0.5"/>
+  <text x="786" y="33" text-anchor="middle" font-size="11" font-weight="700" fill="#c4b5fd">Rete Unica: 192.168.20.0 /24</text>
 
-  <!-- Zone labels -->
-  <text x="256" y="74" text-anchor="middle" font-size="14" font-weight="700" fill="#60a5fa">🏥 ZONA STAFF MEDICO</text>
-  <text x="700" y="74" text-anchor="middle" font-size="14" font-weight="700" fill="#f59e0b">🪑 SALA ATTESA</text>
+  <!-- ── LEVEL 1: HomeRouter ── center=(480,44) -->
+  <rect x="350" y="22" width="260" height="44" rx="10" fill="#3b0764" stroke="#a855f7" stroke-width="2" filter="url(#sh)"/>
+  <text x="480" y="42" text-anchor="middle" font-size="13" font-weight="700" fill="#d8b4fe">📡 HomeRouter</text>
+  <text x="480" y="58" text-anchor="middle" font-size="10" fill="#a78bfa">(HomeRouter-PT-AC)</text>
 
-  <!-- ===== SWITCH ===== -->
-  <rect x="190" y="100" width="150" height="40" rx="8" fill="#312e81" stroke="#6366f1" stroke-width="1.5" filter="url(#sh)"/>
-  <text x="265" y="125" text-anchor="middle" font-size="11" font-weight="600" fill="#a5b4fc">🔀 Switch_Clinica</text>
+  <!-- Router → Switch -->
+  <line x1="480" y1="66" x2="480" y2="96" stroke="#6366f1" stroke-width="2"/>
 
-  <!-- ===== ROUTER ===== -->
-  <rect x="200" y="190" width="160" height="40" rx="8" fill="#4a1d6e" stroke="#a855f7" stroke-width="1.5" filter="url(#sh)"/>
-  <text x="280" y="215" text-anchor="middle" font-size="11" font-weight="600" fill="#d8b4fe">📡 Router_Clinica</text>
-  <text x="280" y="246" text-anchor="middle" font-size="9" fill="#94a3b8">(HomeRouter-PT-AC)</text>
+  <!-- ── LEVEL 2: Switch_Clinica ── center=(480,117) -->
+  <!-- Switch abbastanza largo da coprire visivamente tutti i dispositivi sottostanti -->
+  <rect x="216" y="96" width="528" height="42" rx="10" fill="#312e81" stroke="#6366f1" stroke-width="2" filter="url(#sh)"/>
+  <text x="480" y="122" text-anchor="middle" font-size="13" font-weight="700" fill="#a5b4fc">🔀 Switch_Clinica</text>
 
-  <!-- ===== AP ===== -->
-  <rect x="620" y="100" width="150" height="40" rx="8" fill="#4a1d6e" stroke="#a855f7" stroke-width="1.5" filter="url(#sh)"/>
-  <text x="695" y="125" text-anchor="middle" font-size="11" font-weight="600" fill="#d8b4fe">📡 AP_SalaAttesa</text>
+  <!-- Switch → 7 devices: spaziatura uniforme -->
+  <!-- 7 box da 108px + 6 gap da 12px = 828px; start=(960-828)/2=66 -->
+  <!-- Centri: 120, 240, 360, 480, 600, 720, 840 -->
+  <line x1="480" y1="138" x2="120" y2="178" stroke="#475569" stroke-width="1.5"/>
+  <line x1="480" y1="138" x2="240" y2="178" stroke="#475569" stroke-width="1.5"/>
+  <line x1="480" y1="138" x2="360" y2="178" stroke="#475569" stroke-width="1.5"/>
+  <line x1="480" y1="138" x2="480" y2="178" stroke="#475569" stroke-width="1.5"/>
+  <line x1="480" y1="138" x2="600" y2="178" stroke="#475569" stroke-width="1.5"/>
+  <line x1="480" y1="138" x2="720" y2="178" stroke="#475569" stroke-width="1.5"/>
+  <line x1="480" y1="138" x2="840" y2="178" stroke="#475569" stroke-width="1.5"/>
 
-  <!-- Cable Switch → Router (thin, semi-transparent) -->
-  <line x1="265" y1="140" x2="270" y2="190" stroke="#6366f1" stroke-width="1.5" opacity="0.5"/>
-  <!-- Cable Switch → AP (thin, semi-transparent) -->
-  <line x1="340" y1="120" x2="620" y2="120" stroke="#6366f1" stroke-width="1.5" opacity="0.5"/>
+  <!-- ── LEVEL 3: Devices ── y=178, width=108, height=42, gap=12 -->
+  <!-- Tutti spaziati uniformemente: end box 7 = 786+108=894, entro 960 -->
 
-  <!-- ===== PC STUDI (left column, well spaced) ===== -->
-  <rect x="32" y="110" width="125" height="32" rx="6" fill="#1e3a5f" stroke="#3b82f6" filter="url(#sh)"/>
-  <text x="94" y="130" text-anchor="middle" font-size="10" font-weight="600" fill="#93c5fd">💻 PC Cardiologo</text>
-  <line x1="157" y1="126" x2="190" y2="120" stroke="#475569" stroke-width="1" opacity="0.5"/>
+  <!-- PC Cardiologo  x=66  center=120 -->
+  <rect x="66"  y="178" width="108" height="42" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5" filter="url(#sh)"/>
+  <text x="120" y="196" text-anchor="middle" font-size="9.5" font-weight="600" fill="#93c5fd">💻 PC</text>
+  <text x="120" y="212" text-anchor="middle" font-size="9.5" font-weight="600" fill="#93c5fd">Cardiologo</text>
 
-  <rect x="32" y="156" width="125" height="32" rx="6" fill="#1e3a5f" stroke="#3b82f6" filter="url(#sh)"/>
-  <text x="94" y="176" text-anchor="middle" font-size="10" font-weight="600" fill="#93c5fd">💻 PC Ortopedico</text>
-  <line x1="157" y1="172" x2="190" y2="125" stroke="#475569" stroke-width="1" opacity="0.5"/>
+  <!-- PC Ortopedico  x=186  center=240 -->
+  <rect x="186" y="178" width="108" height="42" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5" filter="url(#sh)"/>
+  <text x="240" y="196" text-anchor="middle" font-size="9.5" font-weight="600" fill="#93c5fd">💻 PC</text>
+  <text x="240" y="212" text-anchor="middle" font-size="9.5" font-weight="600" fill="#93c5fd">Ortopedico</text>
 
-  <rect x="32" y="202" width="125" height="32" rx="6" fill="#1e3a5f" stroke="#3b82f6" filter="url(#sh)"/>
-  <text x="94" y="222" text-anchor="middle" font-size="10" font-weight="600" fill="#93c5fd">💻 PC Oculista</text>
-  <line x1="157" y1="218" x2="192" y2="132" stroke="#475569" stroke-width="1" opacity="0.5"/>
+  <!-- PC Oculista  x=306  center=360 -->
+  <rect x="306" y="178" width="108" height="42" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5" filter="url(#sh)"/>
+  <text x="360" y="196" text-anchor="middle" font-size="9.5" font-weight="600" fill="#93c5fd">💻 PC</text>
+  <text x="360" y="212" text-anchor="middle" font-size="9.5" font-weight="600" fill="#93c5fd">Oculista</text>
 
-  <!-- ===== PC RECEPTION ===== -->
-  <rect x="32" y="270" width="125" height="32" rx="6" fill="#1e3a5f" stroke="#3b82f6" filter="url(#sh)"/>
-  <text x="94" y="290" text-anchor="middle" font-size="10" font-weight="600" fill="#93c5fd">💻 PC Reception</text>
-  <text x="94" y="318" text-anchor="middle" font-size="9" fill="#64748b">IP: .15 (statico)</text>
-  <line x1="157" y1="286" x2="195" y2="135" stroke="#475569" stroke-width="1" opacity="0.5"/>
+  <!-- PC Reception  x=426  center=480 -->
+  <rect x="426" y="178" width="108" height="42" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5" filter="url(#sh)"/>
+  <text x="480" y="196" text-anchor="middle" font-size="9.5" font-weight="600" fill="#93c5fd">💻 PC</text>
+  <text x="480" y="212" text-anchor="middle" font-size="9.5" font-weight="600" fill="#93c5fd">Reception</text>
 
-  <!-- ===== SERVER + STAMPANTE ===== -->
-  <rect x="32" y="360" width="140" height="32" rx="6" fill="#14352a" stroke="#10b981" filter="url(#sh)"/>
-  <text x="102" y="380" text-anchor="middle" font-size="10" font-weight="600" fill="#6ee7b7">🖥️ Server Cartelle</text>
-  <text x="102" y="408" text-anchor="middle" font-size="9" fill="#64748b">IP: .10 (statico)</text>
-  <line x1="130" y1="360" x2="215" y2="140" stroke="#475569" stroke-width="1" opacity="0.5"/>
+  <!-- Server Cartelle  x=546  center=600 -->
+  <rect x="546" y="178" width="108" height="42" rx="8" fill="#14352a" stroke="#10b981" stroke-width="1.5" filter="url(#sh)"/>
+  <text x="600" y="196" text-anchor="middle" font-size="9.5" font-weight="600" fill="#6ee7b7">🖥️ Server</text>
+  <text x="600" y="212" text-anchor="middle" font-size="9.5" font-weight="600" fill="#6ee7b7">Cartelle (.10)</text>
 
-  <rect x="200" y="360" width="150" height="32" rx="6" fill="#14352a" stroke="#10b981" filter="url(#sh)"/>
-  <text x="275" y="380" text-anchor="middle" font-size="10" font-weight="600" fill="#6ee7b7">🖨️ Stampante Referti</text>
-  <text x="275" y="408" text-anchor="middle" font-size="9" fill="#64748b">IP: .11 (statico)</text>
-  <line x1="260" y1="360" x2="250" y2="140" stroke="#475569" stroke-width="1" opacity="0.5"/>
+  <!-- Stampante Referti  x=666  center=720 -->
+  <rect x="666" y="178" width="108" height="42" rx="8" fill="#14352a" stroke="#10b981" stroke-width="1.5" filter="url(#sh)"/>
+  <text x="720" y="196" text-anchor="middle" font-size="9.5" font-weight="600" fill="#6ee7b7">🖨️ Stampante</text>
+  <text x="720" y="212" text-anchor="middle" font-size="9.5" font-weight="600" fill="#6ee7b7">Referti (.11)</text>
 
-  <!-- ===== WIFI STAFF (grouped, right side of staff zone) ===== -->
-  <rect x="380" y="260" width="100" height="50" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-dasharray="4,3" filter="url(#sh)"/>
-  <text x="430" y="281" text-anchor="middle" font-size="10" font-weight="600" fill="#93c5fd">💻 Laptop Dir.</text>
-  <text x="430" y="297" text-anchor="middle" font-size="9" fill="#64748b">+ 2 Tablet Med.</text>
-  <line x1="420" y1="260" x2="310" y2="230" stroke="#60a5fa" stroke-width="1" stroke-dasharray="5,4" opacity="0.6"/>
-  <text x="430" y="328" text-anchor="middle" font-size="9" fill="#60a5fa" font-weight="600">WiFi: Clinica_Staff</text>
+  <!-- AP SalaAttesa  x=786  center=840 -->
+  <rect x="786" y="178" width="108" height="42" rx="8" fill="#4a1d6e" stroke="#a855f7" stroke-width="1.5" filter="url(#sh)"/>
+  <text x="840" y="196" text-anchor="middle" font-size="9.5" font-weight="600" fill="#d8b4fe">📡 AP</text>
+  <text x="840" y="212" text-anchor="middle" font-size="9.5" font-weight="600" fill="#d8b4fe">SalaAttesa</text>
 
-  <!-- ===== SALA ATTESA (grouped) ===== -->
-  <rect x="560" y="190" width="145" height="50" rx="8" fill="#422006" stroke="#f59e0b" stroke-dasharray="4,3" filter="url(#sh)"/>
-  <text x="632" y="211" text-anchor="middle" font-size="10" font-weight="600" fill="#fcd34d">📱 4 Smartphone</text>
-  <text x="632" y="227" text-anchor="middle" font-size="9" fill="#b5873a">Paziente 1, 2, 3, 4</text>
-  <line x1="650" y1="190" x2="690" y2="140" stroke="#f59e0b" stroke-width="1" stroke-dasharray="5,4" opacity="0.6"/>
+  <!-- WiFi label -->
+  <text x="840" y="242" text-anchor="middle" font-size="9" font-weight="700" fill="#f59e0b">WiFi: Clinica_Ospiti ▼</text>
 
-  <rect x="730" y="190" width="140" height="50" rx="8" fill="#422006" stroke="#f59e0b" stroke-dasharray="4,3" filter="url(#sh)"/>
-  <text x="800" y="211" text-anchor="middle" font-size="10" font-weight="600" fill="#fcd34d">📱 Tablet + 📺 TV</text>
-  <text x="800" y="227" text-anchor="middle" font-size="9" fill="#b5873a">InfoClinica, SmartTV</text>
-  <line x1="780" y1="190" x2="720" y2="140" stroke="#f59e0b" stroke-width="1" stroke-dasharray="5,4" opacity="0.6"/>
+  <!-- AP → Smartphone (WiFi dashed) -->
+  <line x1="840" y1="220" x2="840" y2="256" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,3"/>
 
-  <text x="700" y="168" text-anchor="middle" font-size="9" fill="#f59e0b" font-weight="600">WiFi: Clinica_Ospiti</text>
-  <text x="700" y="268" text-anchor="middle" font-size="10" fill="#94a3b8">6 dispositivi wireless</text>
+  <!-- 4 Smartphone  x=786  center=840  y=256 -->
+  <rect x="786" y="256" width="108" height="42" rx="8" fill="#422006" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,3" filter="url(#sh)"/>
+  <text x="840" y="274" text-anchor="middle" font-size="9.5" font-weight="600" fill="#fcd34d">📱 Smartphone</text>
+  <text x="840" y="290" text-anchor="middle" font-size="9" fill="#b5873a">4 Pazienti</text>
 
-  <!-- ===== DANGER: Ping arrow (bottom, clear space) ===== -->
-  <!-- Arrow: curves from ospiti area down and across to server -->
-  <path d="M 632,240 L 632,490 L 102,490 L 102,410" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="8,4" marker-end="url(#ar)"/>
+  <!-- Smartphone → Tablet/TV -->
+  <line x1="840" y1="298" x2="840" y2="314" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,3"/>
 
-  <!-- Ping label on the horizontal part of the arrow, in clear space -->
-  <rect x="255" y="470" width="280" height="34" rx="8" fill="#7f1d1d" fill-opacity="0.95" stroke="#ef4444" stroke-width="1.5"/>
-  <text x="395" y="483" text-anchor="middle" font-size="10" fill="#fca5a5">ping 192.168.20.10</text>
-  <text x="395" y="498" text-anchor="middle" font-size="12" font-weight="700" fill="#fca5a5">⚠️ Paziente → Server: Reply! Rischio sicurezza!</text>
+  <!-- Tablet + TV  x=786  center=840  y=314 -->
+  <rect x="786" y="314" width="108" height="42" rx="8" fill="#422006" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,3" filter="url(#sh)"/>
+  <text x="840" y="332" text-anchor="middle" font-size="9.5" font-weight="600" fill="#fcd34d">📺 Tablet + TV</text>
+  <text x="840" y="348" text-anchor="middle" font-size="9" fill="#b5873a">InfoClinica (.140)</text>
 
-  <!-- Small labels on arrow path -->
-  <text x="645" y="370" font-size="9" fill="#ef4444" opacity="0.7">📱 paziente</text>
-  <text x="60" y="440" font-size="9" fill="#ef4444" opacity="0.7">🖥️ server</text>
+  <!-- ── DANGER: ping arrow Paziente → Server ── -->
+  <!-- Da Tablet/TV (840,356) → sotto → sinistra → su al Server (600,222) -->
+  <path d="M 840,356 L 840,440 L 600,440 L 600,222"
+        fill="none" stroke="#ef4444" stroke-width="2.5"
+        stroke-dasharray="9,5" marker-end="url(#ar)"/>
+
+  <!-- Danger label -->
+  <rect x="452" y="416" width="326" height="36" rx="8"
+        fill="#7f1d1d" fill-opacity="0.92" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="615" y="431" text-anchor="middle" font-size="10" fill="#fca5a5">ping 192.168.20.10</text>
+  <text x="615" y="447" text-anchor="middle" font-size="11" font-weight="700" fill="#fca5a5">⚠️ Paziente → Server: Reply! Rischio sicurezza</text>
 </svg>
 
 <div class="legend">
   <div class="legend-item"><div class="legend-line" style="background:#475569"></div> Cavo Ethernet</div>
-  <div class="legend-item"><div class="legend-line" style="background:repeating-linear-gradient(90deg,#60a5fa 0 5px,transparent 5px 9px)"></div> WiFi Staff</div>
-  <div class="legend-item"><div class="legend-line" style="background:repeating-linear-gradient(90deg,#f59e0b 0 5px,transparent 5px 9px)"></div> WiFi Ospiti</div>
-  <div class="legend-item"><div class="legend-line" style="background:repeating-linear-gradient(90deg,#ef4444 0 6px,transparent 6px 10px)"></div> Ping pericoloso</div>
+  <div class="legend-item"><div class="legend-line" style="background:repeating-linear-gradient(90deg,#f59e0b 0 5px,transparent 5px 9px)"></div> Segnale WiFi</div>
+  <div class="legend-item"><div class="legend-line" style="background:repeating-linear-gradient(90deg,#ef4444 0 7px,transparent 7px 12px)"></div> Ping pericoloso</div>
 </div>
 
 <div class="info-grid">
@@ -197,7 +204,7 @@
       <li>Rete unica: 192.168.20.0/24</li>
       <li>Subnet mask: 255.255.255.0</li>
       <li>Gateway: 192.168.20.1</li>
-      <li>DHCP range: .100 - .200</li>
+      <li>DHCP range: .100 – .200</li>
       <li>1 solo switch per tutti i dispositivi</li>
     </ul>
   </div>
@@ -205,7 +212,7 @@
     <h3>🔓 Problemi di Sicurezza</h3>
     <ul>
       <li>Pazienti possono pingare il server</li>
-      <li>Broadcast arriva a tutti (15 dispositivi)</li>
+      <li>Broadcast arriva a tutti (15+ dispositivi)</li>
       <li>Sniffing possibile dalla sala d'attesa</li>
       <li>Traffico ospiti può rallentare lo staff</li>
       <li>Nessun punto di controllo nel mezzo</li>
@@ -218,122 +225,137 @@
 <div class="diagram-panel" id="panel-after">
 <div class="status-banner success">✅ RETE SEGMENTATA — Due subnet /25 separate — Broadcast isolato, traffico separato, router come punto di controllo</div>
 
-<svg viewBox="0 0 900 540" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 960 510" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <filter id="sh2"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.35"/></filter>
+    <filter id="sh2"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.4"/></filter>
   </defs>
 
-  <!-- Zone BG -->
-  <rect x="16" y="120" width="410" height="400" rx="14" fill="#1e3a5f" fill-opacity="0.25" stroke="#334155"/>
-  <rect x="474" y="120" width="410" height="400" rx="14" fill="#5f3a1e" fill-opacity="0.25" stroke="#334155"/>
+  <!-- Background panel -->
+  <rect x="10" y="10" width="940" height="490" rx="16" fill="#1e293b" fill-opacity="0.4" stroke="#334155"/>
 
-  <!-- Subnet badges -->
-  <rect x="40" y="130" width="360" height="26" rx="7" fill="#1e40af" fill-opacity="0.3" stroke="#3b82f6" stroke-opacity="0.4"/>
-  <text x="220" y="148" text-anchor="middle" font-size="11" font-weight="700" fill="#93c5fd">🏥 SUBNET STAFF — 192.168.20.0/25</text>
+  <!-- Zone backgrounds -->
+  <rect x="18"  y="94" width="456" height="398" rx="12" fill="#1e3a5f" fill-opacity="0.15" stroke="#3b82f6" stroke-opacity="0.3"/>
+  <rect x="486" y="94" width="456" height="398" rx="12" fill="#5f3a1e" fill-opacity="0.15" stroke="#f59e0b" stroke-opacity="0.3"/>
 
-  <rect x="500" y="130" width="360" height="26" rx="7" fill="#92400e" fill-opacity="0.3" stroke="#f59e0b" stroke-opacity="0.4"/>
-  <text x="680" y="148" text-anchor="middle" font-size="11" font-weight="700" fill="#fcd34d">🪑 SUBNET OSPITI — 192.168.20.128/25</text>
+  <!-- Zone labels -->
+  <text x="246" y="116" text-anchor="middle" font-size="11" font-weight="700" fill="#60a5fa">🏥 SUBNET STAFF — 192.168.20.0 /25</text>
+  <text x="714" y="116" text-anchor="middle" font-size="11" font-weight="700" fill="#f59e0b">🪑 SUBNET OSPITI — 192.168.20.128 /25</text>
 
-  <!-- ===== ROUTER 2911 ===== -->
-  <rect x="320" y="22" width="260" height="50" rx="10" fill="#3b0764" stroke="#a855f7" stroke-width="2" filter="url(#sh2)"/>
-  <text x="450" y="46" text-anchor="middle" font-size="13" font-weight="700" fill="#d8b4fe">🔀 Router_MediCare</text>
-  <text x="450" y="62" text-anchor="middle" font-size="10" fill="#c084fc">(Cisco 2911)</text>
+  <!-- ── LEVEL 1: Router 2911 ── center=(480,44) -->
+  <rect x="340" y="22" width="280" height="44" rx="10" fill="#3b0764" stroke="#a855f7" stroke-width="2" filter="url(#sh2)"/>
+  <text x="480" y="42" text-anchor="middle" font-size="13" font-weight="700" fill="#d8b4fe">🔀 Router_MediCare</text>
+  <text x="480" y="58" text-anchor="middle" font-size="10" fill="#c084fc">(Cisco 2911)</text>
 
   <!-- Interface labels -->
-  <rect x="180" y="80" width="160" height="22" rx="5" fill="#1e3a5f" fill-opacity="0.8" stroke="#3b82f6" stroke-opacity="0.5"/>
-  <text x="260" y="95" text-anchor="middle" font-size="9" font-weight="600" fill="#93c5fd">Gig0/0 → 192.168.20.1</text>
+  <text x="295" y="80" text-anchor="middle" font-size="9" fill="#60a5fa" font-weight="600">Gig0/0 → .1</text>
+  <text x="665" y="80" text-anchor="middle" font-size="9" fill="#f59e0b" font-weight="600">Gig0/1 → .129</text>
 
-  <rect x="560" y="80" width="175" height="22" rx="5" fill="#422006" fill-opacity="0.8" stroke="#f59e0b" stroke-opacity="0.5"/>
-  <text x="647" y="95" text-anchor="middle" font-size="9" font-weight="600" fill="#fcd34d">Gig0/1 → 192.168.20.129</text>
+  <!-- Router → switches: elbow lines -->
+  <!-- Left branch: (480,66) → down to y=90 → left to x=246 → down to Switch_Staff top (246,132) -->
+  <polyline points="480,66 480,90 246,90 246,132" fill="none" stroke="#3b82f6" stroke-width="2"/>
+  <!-- Right branch: (480,66) → down to y=90 → right to x=714 → down to Switch_Ospiti top (714,132) -->
+  <polyline points="480,66 480,90 714,90 714,132" fill="none" stroke="#f59e0b" stroke-width="2"/>
 
-  <!-- ===== SWITCH STAFF ===== -->
-  <rect x="140" y="175" width="150" height="38" rx="8" fill="#312e81" stroke="#6366f1" stroke-width="1.5" filter="url(#sh2)"/>
-  <text x="215" y="199" text-anchor="middle" font-size="11" font-weight="600" fill="#a5b4fc">🔀 Switch_Staff</text>
+  <!-- ── LEVEL 2: Switch_Staff ── center=(246,152) -->
+  <rect x="136" y="132" width="220" height="40" rx="10" fill="#312e81" stroke="#3b82f6" stroke-width="2" filter="url(#sh2)"/>
+  <text x="246" y="157" text-anchor="middle" font-size="12" font-weight="700" fill="#a5b4fc">🔀 Switch_Staff</text>
 
-  <!-- ===== SWITCH OSPITI ===== -->
-  <rect x="610" y="175" width="150" height="38" rx="8" fill="#312e81" stroke="#6366f1" stroke-width="1.5" filter="url(#sh2)"/>
-  <text x="685" y="199" text-anchor="middle" font-size="11" font-weight="600" fill="#a5b4fc">🔀 Switch_Ospiti</text>
+  <!-- ── LEVEL 2: Switch_Ospiti ── center=(714,152) -->
+  <rect x="604" y="132" width="220" height="40" rx="10" fill="#312e81" stroke="#f59e0b" stroke-width="2" filter="url(#sh2)"/>
+  <text x="714" y="157" text-anchor="middle" font-size="12" font-weight="700" fill="#fcd34d">🔀 Switch_Ospiti</text>
 
-  <!-- Cable Router → Switches (semi-transparent) -->
-  <line x1="380" y1="72" x2="230" y2="175" stroke="#3b82f6" stroke-width="1.5" opacity="0.45"/>
-  <line x1="520" y1="72" x2="670" y2="175" stroke="#f59e0b" stroke-width="1.5" opacity="0.45"/>
+  <!-- Switch_Staff → 6 devices: fan from (246,172) to device tops (y=212) -->
+  <!-- 6 boxes w=68 gap=8 → total=448, start=22, centers: 56,132,208,284,360,436 -->
+  <line x1="246" y1="172" x2="56"  y2="212" stroke="#475569" stroke-width="1.5"/>
+  <line x1="246" y1="172" x2="132" y2="212" stroke="#475569" stroke-width="1.5"/>
+  <line x1="246" y1="172" x2="208" y2="212" stroke="#475569" stroke-width="1.5"/>
+  <line x1="246" y1="172" x2="284" y2="212" stroke="#475569" stroke-width="1.5"/>
+  <line x1="246" y1="172" x2="360" y2="212" stroke="#475569" stroke-width="1.5"/>
+  <line x1="246" y1="172" x2="436" y2="212" stroke="#475569" stroke-width="1.5"/>
 
-  <!-- ===== STAFF: PCs (left col) ===== -->
-  <rect x="32" y="248" width="125" height="32" rx="6" fill="#1e3a5f" stroke="#3b82f6" filter="url(#sh2)"/>
-  <text x="94" y="268" text-anchor="middle" font-size="10" font-weight="600" fill="#93c5fd">💻 PC Cardiologo</text>
-  <line x1="157" y1="264" x2="185" y2="210" stroke="#475569" stroke-width="1" opacity="0.4"/>
+  <!-- ── LEVEL 3 STAFF: 6 devices ── y=212, width=68, height=40, gap=8 -->
+  <!-- Total: 6*68+5*8=448, start=22, last box ends at 470 (dentro zona 474) -->
 
-  <rect x="32" y="294" width="125" height="32" rx="6" fill="#1e3a5f" stroke="#3b82f6" filter="url(#sh2)"/>
-  <text x="94" y="314" text-anchor="middle" font-size="10" font-weight="600" fill="#93c5fd">💻 PC Ortopedico</text>
-  <line x1="157" y1="310" x2="190" y2="210" stroke="#475569" stroke-width="1" opacity="0.4"/>
+  <!-- PC Cardiologo  x=22  center=56 -->
+  <rect x="22"  y="212" width="68" height="40" rx="7" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5" filter="url(#sh2)"/>
+  <text x="56"  y="229" text-anchor="middle" font-size="8" font-weight="600" fill="#93c5fd">💻 PC</text>
+  <text x="56"  y="244" text-anchor="middle" font-size="8" font-weight="600" fill="#93c5fd">Cardiologo</text>
 
-  <rect x="32" y="340" width="125" height="32" rx="6" fill="#1e3a5f" stroke="#3b82f6" filter="url(#sh2)"/>
-  <text x="94" y="360" text-anchor="middle" font-size="10" font-weight="600" fill="#93c5fd">💻 PC Oculista</text>
-  <line x1="157" y1="356" x2="195" y2="210" stroke="#475569" stroke-width="1" opacity="0.4"/>
+  <!-- PC Ortopedico  x=98  center=132 -->
+  <rect x="98"  y="212" width="68" height="40" rx="7" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5" filter="url(#sh2)"/>
+  <text x="132" y="229" text-anchor="middle" font-size="8" font-weight="600" fill="#93c5fd">💻 PC</text>
+  <text x="132" y="244" text-anchor="middle" font-size="8" font-weight="600" fill="#93c5fd">Ortopedico</text>
 
-  <!-- STAFF: Reception + Laptop (right col) -->
-  <rect x="260" y="248" width="140" height="32" rx="6" fill="#1e3a5f" stroke="#3b82f6" filter="url(#sh2)"/>
-  <text x="330" y="268" text-anchor="middle" font-size="10" font-weight="600" fill="#93c5fd">💻 PC Reception</text>
-  <text x="330" y="294" text-anchor="middle" font-size="9" fill="#64748b">IP: .15 (statico)</text>
-  <line x1="290" y1="248" x2="240" y2="210" stroke="#475569" stroke-width="1" opacity="0.4"/>
+  <!-- PC Oculista  x=174  center=208 -->
+  <rect x="174" y="212" width="68" height="40" rx="7" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5" filter="url(#sh2)"/>
+  <text x="208" y="229" text-anchor="middle" font-size="8" font-weight="600" fill="#93c5fd">💻 PC</text>
+  <text x="208" y="244" text-anchor="middle" font-size="8" font-weight="600" fill="#93c5fd">Oculista</text>
 
-  <rect x="260" y="310" width="140" height="32" rx="6" fill="#1e3a5f" stroke="#3b82f6" filter="url(#sh2)"/>
-  <text x="330" y="330" text-anchor="middle" font-size="10" font-weight="600" fill="#93c5fd">💻 Laptop Direttore</text>
-  <line x1="290" y1="310" x2="245" y2="210" stroke="#475569" stroke-width="1" opacity="0.4"/>
+  <!-- PC Reception  x=250  center=284 -->
+  <rect x="250" y="212" width="68" height="40" rx="7" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5" filter="url(#sh2)"/>
+  <text x="284" y="229" text-anchor="middle" font-size="8" font-weight="600" fill="#93c5fd">💻 PC</text>
+  <text x="284" y="244" text-anchor="middle" font-size="8" font-weight="600" fill="#93c5fd">Reception</text>
 
-  <!-- STAFF: Servers -->
-  <rect x="60" y="420" width="140" height="32" rx="6" fill="#14352a" stroke="#10b981" filter="url(#sh2)"/>
-  <text x="130" y="440" text-anchor="middle" font-size="10" font-weight="600" fill="#6ee7b7">🖥️ Server Cartelle</text>
-  <text x="130" y="468" text-anchor="middle" font-size="9" fill="#64748b">IP: .10 (statico)</text>
-  <line x1="155" y1="420" x2="205" y2="210" stroke="#475569" stroke-width="1" opacity="0.4"/>
+  <!-- Server  x=326  center=360 -->
+  <rect x="326" y="212" width="68" height="40" rx="7" fill="#14352a" stroke="#10b981" stroke-width="1.5" filter="url(#sh2)"/>
+  <text x="360" y="229" text-anchor="middle" font-size="8" font-weight="600" fill="#6ee7b7">🖥️ Server</text>
+  <text x="360" y="244" text-anchor="middle" font-size="8" font-weight="600" fill="#6ee7b7">Cart. (.10)</text>
 
-  <rect x="230" y="420" width="155" height="32" rx="6" fill="#14352a" stroke="#10b981" filter="url(#sh2)"/>
-  <text x="307" y="440" text-anchor="middle" font-size="10" font-weight="600" fill="#6ee7b7">🖨️ Stampante Referti</text>
-  <text x="307" y="468" text-anchor="middle" font-size="9" fill="#64748b">IP: .11 (statico)</text>
-  <line x1="280" y1="420" x2="225" y2="210" stroke="#475569" stroke-width="1" opacity="0.4"/>
+  <!-- Stampante  x=402  center=436 -->
+  <rect x="402" y="212" width="68" height="40" rx="7" fill="#14352a" stroke="#10b981" stroke-width="1.5" filter="url(#sh2)"/>
+  <text x="436" y="229" text-anchor="middle" font-size="8" font-weight="600" fill="#6ee7b7">🖨️ Stamp.</text>
+  <text x="436" y="244" text-anchor="middle" font-size="8" font-weight="600" fill="#6ee7b7">Ref. (.11)</text>
 
-  <!-- STAFF DHCP bar -->
-  <rect x="45" y="495" width="370" height="20" rx="5" fill="#1e3a5f" fill-opacity="0.4" stroke="#3b82f6" stroke-opacity="0.3"/>
-  <text x="230" y="509" text-anchor="middle" font-size="9" fill="#60a5fa">DHCP: .50 - .120 &nbsp;|&nbsp; Gateway: .1 &nbsp;|&nbsp; Mask: 255.255.255.128</text>
+  <!-- DHCP bar staff -->
+  <rect x="22" y="472" width="450" height="20" rx="5" fill="#1e3a5f" fill-opacity="0.5" stroke="#3b82f6" stroke-opacity="0.4"/>
+  <text x="247" y="486" text-anchor="middle" font-size="9" fill="#60a5fa">DHCP .50–.120 | Gateway .1 | Mask /25</text>
 
-  <!-- ===== OSPITI: AP ===== -->
-  <rect x="630" y="248" width="140" height="36" rx="8" fill="#4a1d6e" stroke="#a855f7" stroke-width="1.5" filter="url(#sh2)"/>
-  <text x="700" y="271" text-anchor="middle" font-size="11" font-weight="600" fill="#d8b4fe">📡 AP_SalaAttesa</text>
-  <line x1="685" y1="248" x2="685" y2="213" stroke="#475569" stroke-width="1" opacity="0.4"/>
-  <text x="700" y="304" text-anchor="middle" font-size="9" fill="#f59e0b" font-weight="600">WiFi: Clinica_Ospiti</text>
+  <!-- ── LEVEL 3 OSPITI: AP → WiFi chain ── -->
+  <!-- Switch_Ospiti → AP: vertical line (714,172) → (714,212) -->
+  <line x1="714" y1="172" x2="714" y2="212" stroke="#f59e0b" stroke-width="1.5"/>
 
-  <!-- OSPITI: Grouped smartphones -->
-  <rect x="510" y="330" width="155" height="50" rx="8" fill="#422006" stroke="#f59e0b" stroke-dasharray="4,3" filter="url(#sh2)"/>
-  <text x="587" y="352" text-anchor="middle" font-size="10" font-weight="600" fill="#fcd34d">📱 4 Smartphone</text>
-  <text x="587" y="368" text-anchor="middle" font-size="9" fill="#b5873a">Paziente 1, 2, 3, 4</text>
-  <line x1="610" y1="330" x2="680" y2="284" stroke="#f59e0b" stroke-width="1" stroke-dasharray="5,4" opacity="0.5"/>
+  <!-- AP_SalaAttesa  center=(714,232) -->
+  <rect x="634" y="212" width="160" height="40" rx="8" fill="#4a1d6e" stroke="#a855f7" stroke-width="1.5" filter="url(#sh2)"/>
+  <text x="714" y="229" text-anchor="middle" font-size="10" font-weight="600" fill="#d8b4fe">📡 AP_SalaAttesa</text>
+  <text x="714" y="246" text-anchor="middle" font-size="9" fill="#a78bfa">IP: .130 (statico)</text>
 
-  <!-- OSPITI: Grouped tablet + TV -->
-  <rect x="700" y="330" width="155" height="50" rx="8" fill="#422006" stroke="#f59e0b" stroke-dasharray="4,3" filter="url(#sh2)"/>
-  <text x="777" y="352" text-anchor="middle" font-size="10" font-weight="600" fill="#fcd34d">📱 Tablet + 📺 TV</text>
-  <text x="777" y="368" text-anchor="middle" font-size="9" fill="#b5873a">InfoClinica, SmartTV (.140)</text>
-  <line x1="755" y1="330" x2="710" y2="284" stroke="#f59e0b" stroke-width="1" stroke-dasharray="5,4" opacity="0.5"/>
+  <!-- WiFi label -->
+  <text x="714" y="274" text-anchor="middle" font-size="9" font-weight="700" fill="#f59e0b">WiFi: Clinica_Ospiti ▼</text>
 
-  <text x="680" y="410" text-anchor="middle" font-size="10" fill="#94a3b8">6 dispositivi wireless</text>
+  <!-- AP → Smartphone (dashed) -->
+  <line x1="714" y1="252" x2="714" y2="286" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,4"/>
 
-  <!-- OSPITI DHCP bar -->
-  <rect x="495" y="495" width="370" height="20" rx="5" fill="#422006" fill-opacity="0.4" stroke="#f59e0b" stroke-opacity="0.3"/>
-  <text x="680" y="509" text-anchor="middle" font-size="9" fill="#f59e0b">DHCP: .150 - .250 &nbsp;|&nbsp; Gateway: .129 &nbsp;|&nbsp; Mask: 255.255.255.128</text>
+  <!-- 4 Smartphone  center=(714,316) -->
+  <rect x="634" y="286" width="160" height="40" rx="8" fill="#422006" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,3" filter="url(#sh2)"/>
+  <text x="714" y="303" text-anchor="middle" font-size="10" font-weight="600" fill="#fcd34d">📱 4 Smartphone</text>
+  <text x="714" y="319" text-anchor="middle" font-size="9" fill="#b5873a">Pazienti 1–4</text>
 
-  <!-- Separation -->
-  <line x1="450" y1="120" x2="450" y2="520" stroke="#334155" stroke-width="2" stroke-dasharray="8,4"/>
-  <rect x="432" y="108" width="36" height="20" rx="4" fill="#0f172a"/>
-  <text x="450" y="122" text-anchor="middle" font-size="11" fill="#64748b">🔒</text>
+  <!-- Smartphone → Tablet/TV -->
+  <line x1="714" y1="326" x2="714" y2="342" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+  <!-- Tablet + TV  center=(714,372) -->
+  <rect x="634" y="342" width="160" height="40" rx="8" fill="#422006" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,3" filter="url(#sh2)"/>
+  <text x="714" y="359" text-anchor="middle" font-size="10" font-weight="600" fill="#fcd34d">📺 Tablet + TV</text>
+  <text x="714" y="375" text-anchor="middle" font-size="9" fill="#b5873a">InfoClinica (.140)</text>
+
+  <!-- DHCP bar ospiti -->
+  <rect x="494" y="472" width="450" height="20" rx="5" fill="#422006" fill-opacity="0.5" stroke="#f59e0b" stroke-opacity="0.4"/>
+  <text x="719" y="486" text-anchor="middle" font-size="9" fill="#f59e0b">DHCP .150–.250 | Gateway .129 | Mask /25</text>
+
+  <!-- Divider line -->
+  <line x1="480" y1="94" x2="480" y2="464" stroke="#334155" stroke-width="2" stroke-dasharray="10,6"/>
+  <rect x="462" y="82" width="36" height="20" rx="5" fill="#0f172a"/>
+  <text x="480" y="96" text-anchor="middle" font-size="13">🔒</text>
 
   <!-- Shield badge -->
-  <rect x="380" y="437" width="140" height="24" rx="6" fill="#065f46" fill-opacity="0.6" stroke="#10b981" stroke-opacity="0.5"/>
-  <text x="450" y="454" text-anchor="middle" font-size="10" font-weight="700" fill="#6ee7b7">🛡️ Broadcast isolato</text>
+  <rect x="376" y="432" width="208" height="24" rx="7" fill="#065f46" fill-opacity="0.7" stroke="#10b981" stroke-opacity="0.6"/>
+  <text x="480" y="449" text-anchor="middle" font-size="10" font-weight="700" fill="#6ee7b7">🛡️ Broadcast isolato tra subnet</text>
 </svg>
 
 <div class="legend">
   <div class="legend-item"><div class="legend-line" style="background:#475569"></div> Cavo Ethernet</div>
-  <div class="legend-item"><div class="legend-line" style="background:#3b82f6;height:4px"></div> Collegamento Staff</div>
-  <div class="legend-item"><div class="legend-line" style="background:#f59e0b;height:4px"></div> Collegamento Ospiti</div>
+  <div class="legend-item"><div class="legend-line" style="background:#3b82f6; height:4px"></div> Collegamento Staff</div>
+  <div class="legend-item"><div class="legend-line" style="background:#f59e0b; height:4px"></div> Collegamento Ospiti</div>
   <div class="legend-item"><div class="legend-line" style="background:repeating-linear-gradient(90deg,#f59e0b 0 5px,transparent 5px 9px)"></div> WiFi Ospiti</div>
   <div class="legend-item"><div style="width:14px;height:14px;border-radius:4px;background:#10b981;flex-shrink:0"></div> Server / Stampante</div>
 </div>
@@ -344,8 +366,8 @@
     <ul>
       <li>Gateway: 192.168.20.1 (Gig0/0)</li>
       <li>Mask: 255.255.255.128</li>
-      <li>IP statici: .2 - .49</li>
-      <li>DHCP: .50 - .120</li>
+      <li>IP statici: .2 – .49</li>
+      <li>DHCP: .50 – .120</li>
       <li>Switch dedicato: Switch_Staff</li>
     </ul>
   </div>
@@ -354,18 +376,18 @@
     <ul>
       <li>Gateway: 192.168.20.129 (Gig0/1)</li>
       <li>Mask: 255.255.255.128</li>
-      <li>IP statici: .130 - .149</li>
-      <li>DHCP: .150 - .250</li>
+      <li>IP statici: .130 – .149</li>
+      <li>DHCP: .150 – .250</li>
       <li>Switch dedicato: Switch_Ospiti</li>
     </ul>
   </div>
   <div class="info-card sicurezza" style="grid-column:1/-1">
     <h3>🛡️ Vantaggi della Segmentazione</h3>
     <ul>
-      <li>Broadcast confinato nella propria subnet (non arriva più a tutti i 15 dispositivi)</li>
+      <li>Broadcast confinato nella propria subnet (non arriva più a tutti i 15+ dispositivi)</li>
       <li>Impossibile fare sniffing della rete staff dalla sala d'attesa (switch diversi)</li>
       <li>La rete medica resta stabile anche se la rete ospiti è sovraccarica</li>
-      <li>Il router è un punto di controllo: in futuro si potranno aggiungere regole (ACL)</li>
+      <li>Il router è un punto di controllo: in futuro si potranno aggiungere regole ACL</li>
       <li>Gestione più semplice: ogni subnet ha il suo range IP, il suo switch, il suo DHCP</li>
     </ul>
   </div>

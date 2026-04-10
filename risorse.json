@@ -1,5 +1,5 @@
 {
-  "ultimo_aggiornamento": "2026-03-20",
+  "ultimo_aggiornamento": "2026-04-10",
   "base_url": "https://mrobotto-dev.github.io/didattica-risorse",
   "risorse": [
     {
@@ -12,7 +12,8 @@
       "titolo": "MediCare Plus - Diagrammi di Rete",
       "descrizione": "Confronto interattivo rete unificata vs segmentata (SR05 vs SR06)",
       "esercitazione": "SR06",
-      "data_pubblicazione": "2026-03-20"
+      "data_pubblicazione": "2026-03-20",
+      "data_aggiornamento": "2026-04-10"
     }
   ]
 }
